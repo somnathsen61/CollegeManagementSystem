@@ -17,7 +17,7 @@ public partial class TeacherSubjectAllocation
 
     public virtual ICollection<StudentGrade> StudentGrades { get; set; } = new List<StudentGrade>();
 
-    public virtual Subject Subject { get; set; } = null!;
+    public virtual Subject? Subject { get; set; }
 
-    public virtual Teacher Teacher { get; set; } = null!;
+    public virtual Teacher? Teacher { get; set; }
 }

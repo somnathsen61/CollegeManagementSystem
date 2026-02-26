@@ -104,5 +104,17 @@ namespace CollegeManagementAPI.Controllers
         {
             return _context.Teachers.Any(e => e.TeacherId == id);
         }
+
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<Teacher>> GetTeacherByUserId(int userId)
+        {
+            var teacher = await _context.Teachers
+                .Include(t => t.Department)
+                .FirstOrDefaultAsync(t => t.UserId == userId);
+
+            if (teacher == null) return NotFound();
+
+            return teacher;
+        }
     }
 }

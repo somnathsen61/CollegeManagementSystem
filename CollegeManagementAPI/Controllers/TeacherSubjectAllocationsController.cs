@@ -104,5 +104,31 @@ namespace CollegeManagementAPI.Controllers
         {
             return _context.TeacherSubjectAllocations.Any(e => e.AllocationId == id);
         }
+
+        // GET: api/TeacherSubjectAllocations/teacher/5
+        [HttpGet("teacher/{teacherId}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetAllocationsByTeacher(int teacherId)
+        {
+            // We select specific fields to make the Frontend's life easier
+            var allocations = await _context.TeacherSubjectAllocations
+                .Include(a => a.Subject)
+                .ThenInclude(s => s.Department) // Include Dept to show "CSE"
+                .Where(a => a.TeacherId == teacherId)
+                .Select(a => new
+                {
+                    a.AllocationId,
+                    a.SubjectId,     // <--- ADD THIS
+                    SubjectName = a.Subject.SubjectName,
+                    SubjectCode = a.Subject.SubjectCode,
+                    DepartmentId = a.Subject.DepartmentId, // <--- ADD THIS
+                    Department = a.Subject.Department.DepartmentCode,
+                    Semester = a.Subject.Semester,
+                    a.AcademicYear,
+                    a.SemesterType
+                })
+                .ToListAsync(); // <-- FIX: Add ToListAsync() to materialize the query
+
+            return Ok(allocations);
+        }
     }
 }

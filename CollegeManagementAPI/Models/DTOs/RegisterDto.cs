@@ -3,7 +3,7 @@
     public class RegisterDto
     {
         // Common User Data
-        public string Username { get; set; } // Will be EnrollmentNo or EmpID
+        public string Username { get; set; } // Will be EnrollmentNo or EmpId
         public string Password { get; set; }
         public string Email { get; set; }
         public string Role { get; set; } // "Student" or "Teacher"

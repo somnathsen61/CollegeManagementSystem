@@ -29,9 +29,13 @@ public partial class StudentGrade
 
     public bool? IsPublished { get; set; }
 
+    public DateTime? CreatedDate { get; set; }
+
+    public DateTime? ModifiedDate { get; set; }
+
     public virtual TeacherSubjectAllocation? Allocation { get; set; }
 
-    public virtual Student Student { get; set; } = null!;
+    public virtual Student? Student { get; set; }
 
-    public virtual Subject Subject { get; set; } = null!;
+    public virtual Subject? Subject { get; set; }
 }

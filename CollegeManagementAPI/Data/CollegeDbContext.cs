@@ -98,6 +98,11 @@ public partial class CollegeDbContext : DbContext
             entity.Property(e => e.TotalMarks)
                 .HasComputedColumnSql("(([InternalMarks]+[MidSemMarks])+[EndSemMarks])", true)
                 .HasColumnType("decimal(7, 2)");
+            entity.Property(e => e.CreatedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime2(7)");
+            entity.Property(e => e.ModifiedDate)
+                .HasColumnType("datetime2(7)");
 
             entity.HasOne(d => d.Allocation).WithMany(p => p.StudentGrades)
                 .HasForeignKey(d => d.AllocationId)

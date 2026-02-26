@@ -29,7 +29,7 @@ namespace CollegeManagementAPI.Controllers
             // 1. Check if user already exists
             if (_context.Users.Any(u => u.Username == request.Username))
             {
-                return BadRequest("User with this ID already exists.");
+                return BadRequest("User with this Id already exists.");
             }
 
             // 2. Create the User Login Entry first
@@ -43,7 +43,7 @@ namespace CollegeManagementAPI.Controllers
             };
 
             _context.Users.Add(newUser);
-            await _context.SaveChangesAsync(); // This generates the UserID
+            await _context.SaveChangesAsync(); // This generates the UserId
 
             // 3. Create the Profile based on Role
             if (request.Role == "Student")
@@ -68,7 +68,7 @@ namespace CollegeManagementAPI.Controllers
                 {
                     UserId = newUser.UserId,
                     DepartmentId = request.DepartmentId,
-                    EmployeeId = request.Username, // EmpID is the Username
+                    EmployeeId = request.Username, // EmpId is the Username
                     FirstName = request.FirstName,
                     LastName = request.LastName,
                     Phone = request.Phone,
@@ -99,8 +99,9 @@ namespace CollegeManagementAPI.Controllers
 
             return Ok(new
             {
-                token = token,  // <--- This is what React needs!
-                role = user.Role
+                token = token,
+                role = user.Role,
+                userId = user.UserId
             });
         }
 
@@ -108,7 +109,7 @@ namespace CollegeManagementAPI.Controllers
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()), // Stores UserID
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()), // Stores UserId
                 new Claim(ClaimTypes.Name, user.Username),                    // Stores Username
                 new Claim(ClaimTypes.Role, user.Role)                         // Stores Role (Student/Teacher)
             };

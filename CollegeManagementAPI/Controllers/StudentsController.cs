@@ -104,5 +104,32 @@ namespace CollegeManagementAPI.Controllers
         {
             return _context.Students.Any(e => e.StudentId == id);
         }
+
+        // GET: api/Students/user/5
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<Student>> GetStudentByUserId(int userId)
+        {
+            // We include the Department details so we can show "CSE" instead of "1"
+            var student = await _context.Students
+                .Include(s => s.Department)
+                .FirstOrDefaultAsync(s => s.UserId == userId);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            return student;
+        }
+
+        // GET: api/Students/filter?deptId=1&sem=3
+        [HttpGet("filter")]
+        public async Task<ActionResult<IEnumerable<Student>>> GetStudentsByFilter(int deptId, int sem)
+        {
+            return await _context.Students
+                .Where(s => s.DepartmentId == deptId && s.CurrentSemester == sem)
+                .OrderBy(s => s.EnrollmentNo) // Sort by Roll Number
+                .ToListAsync();
+        }
     }
 }
