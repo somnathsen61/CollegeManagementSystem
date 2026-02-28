@@ -395,7 +395,7 @@ namespace CollegeManagementAPI.Controllers
                 program = student.Program ?? "Bachelor of Technology", // Fallback to B.Tech
                 department = student.Department.DepartmentName,
                 semester = sem,
-                session = "2022-2023", // Matches the PDF format
+                session = grades.FirstOrDefault()?.AcademicYear ?? "2024-2025", // Get from first grade record
                 subjects = subjects,
                 totalCredits = totalCredits,
                 totalPoints = totalPoints,

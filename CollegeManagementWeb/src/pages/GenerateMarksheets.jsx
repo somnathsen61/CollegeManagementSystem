@@ -82,11 +82,8 @@ export default function GenerateMarksheets() {
                     >
                         <option value="">-- Select Course --</option>
                         {departments.map(d => (
-                            <option key={d.departmentID} value={d.departmentID}>{d.departmentName}</option>
+                            <option key={d.departmentId} value={d.departmentId}>{d.departmentName} ({d.departmentCode})</option>
                         ))}
-                        {/* Fallback if Departments API isn't ready: */}
-                        <option value="1">Computer Science and Technology (CSE)</option>
-                        <option value="2">Electronics and Communication (ECE)</option>
                     </select>
                 </div>
 

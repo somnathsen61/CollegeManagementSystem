@@ -38,13 +38,29 @@ export const generateMarksheetPDF = (data) => {
 
     // --- 1. HEADER SECTION ---
     centerText("Indian Institute of Engineering Science and Technology, Shibpur", 20, 14, "bold");
-    centerText(data.program || "Bachelor of Technology", 28, 12, "bold");
-    centerText("[Four-Year Degree Course]", 34, 10, "normal");
+
+    // Map abbreviated program names to full forms
+    const programMap = {
+        "B.Tech": "Bachelor of Technology",
+        "M.Tech": "Master of Technology",
+    };
+
+    const programFullName = programMap[data.program] || data.program || "Bachelor of Technology";
+
+    centerText(programFullName, 28, 12, "bold");
+
+    // Determine course duration based on program
+    const courseDuration = data.program === "M.Tech" ? "[Two-Year Degree Course]" : "[Four-Year Degree Course]";
+
+    centerText(courseDuration, 34, 10, "normal");
 
     const semWords = ["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth"];
     const semWord = semWords[data.semester - 1] || `${data.semester}th`;
 
-    centerText(`${semWord} Semester Examination, 2023`, 42, 12, "bold");
+    // Extract the first year from session (e.g., "2025" from "2025-2026")
+    const examYear = data.session ? data.session.split('-')[0] : '2023';
+
+    centerText(`${semWord} Semester Examination, ${examYear}`, 42, 12, "bold");
     centerText(data.department || "Computer Science and Technology", 48, 12, "bold");
 
     // --- 2. STUDENT DETAILS ---
@@ -56,7 +72,10 @@ export const generateMarksheetPDF = (data) => {
     doc.text(`Registration No: ${data.enrollmentNo}`, 15, 72);
 
     // --- 3. ACADEMIC STATEMENT ---
-    const statement = `The following is the statement of Grades obtained by the student in the ${semWord} Semester of the Academic session ${data.session} for which the examination was held in May, 2023.`;
+    // Determine exam month based on semester (odd = November, even = May)
+    const examMonth = data.semester % 2 === 0 ? "May" : "November";
+
+    const statement = `The following is the statement of Grades obtained by the student in the ${semWord} Semester of the Academic session ${data.session} for which the examination was held in ${examMonth}, ${examYear}.`;
     const splitText = doc.splitTextToSize(statement, pageWidth - 30);
     doc.text(splitText, 15, 82);
 

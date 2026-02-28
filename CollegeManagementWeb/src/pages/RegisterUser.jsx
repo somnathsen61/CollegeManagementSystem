@@ -151,11 +151,8 @@ export default function RegisterUser() {
                             <select name="departmentId" value={form.departmentId} onChange={handleChange} required className="w-full border rounded p-2 mt-1">
                                 <option value="">-- Select Department --</option>
                                 {departments.map(d => (
-                                    <option key={d.departmentID} value={d.departmentID}>{d.departmentName}</option>
+                                    <option key={d.departmentId} value={d.departmentId}>{d.departmentName} ({d.departmentCode})</option>
                                 ))}
-                                {/* Fallback if API fails */}
-                                <option value="1">Computer Science and Technology (CSE)</option>
-                                <option value="2">Electronics and Communication (ECE)</option>
                             </select>
                         </div>
                     </div>
