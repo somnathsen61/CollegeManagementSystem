@@ -1,6 +1,6 @@
 # 🎓 College Management System (IIEST Portal)
 
-A full-stack, role-based academic ERP system for student grading, teacher subject allocations, and automated official marksheet generation — designed around real-world university workflows at **IIEST Shibpur**.
+A full-stack, role-based academic ERP system for student grading, teacher subject allocations, and automated official marksheet generation - designed around real-world university workflows at **IIEST Shibpur**.
 
 ## Tech Stack
 
@@ -16,22 +16,22 @@ A full-stack, role-based academic ERP system for student grading, teacher subjec
 
 ### 🛡️ Admin Portal
 
-- **Dashboard** — Live stats for students, teachers, and departments.
-- **User Registration** — Dynamic form that adapts for Students (Batch, Program, Roll No) or Teachers (Employee ID, Designation).
-- **Subject Allocation** — Assign subjects to teachers for specific academic years and semesters.
-- **Marksheet Generation Engine** — Cross-references syllabus with submitted grades, blocks generation if marks are missing, and provides 1-click PDF publish that flips the `IsPublished` flag instantly.
+- **Dashboard:** Live stats for students, teachers, and departments.
+- **User Registration:** Dynamic form that adapts for Students (Batch, Program, Roll No) or Teachers (Employee ID, Designation).
+- **Subject Allocation:** Assign subjects to teachers for specific academic years and semesters.
+- **Marksheet Generation Engine:** Cross-references syllabus with submitted grades, blocks generation if marks are missing, and provides 1-click PDF publish that flips the `IsPublished` flag instantly.
 
 ### 👨‍🏫 Teacher Portal
 
-- **My Classes** — View all assigned subjects with semester and session info.
-- **Smart Grade Entry** — Theory subjects accept Internal (20), Mid-Sem (30), End-Sem (50); Lab subjects auto-detect via subject code and switch to a single Total Mark out of 100.
-- **Draft Saving** — Teachers can save partial marks and return later. Only modified rows are updated (dirty checking) with an accurate `ModifiedDate` audit trail.
+- **My Classes:** View all assigned subjects with semester and session info.
+- **Smart Grade Entry:** Theory subjects accept Internal (20), Mid-Sem (30), End-Sem (50); Lab subjects auto-detect via subject code and switch to a single Total Mark out of 100.
+- **Draft Saving:** Teachers can save partial marks and return later. Only modified rows are updated (dirty checking) with an accurate `ModifiedDate` audit trail.
 
 ### 🎓 Student Portal
 
-- **Dashboard** — Current semester and auto-calculated overall CGPA.
-- **Secure Grades** — Only published grades are visible. Raw marks are hidden; only Letter Grades and Earned Points are shown with color-coded badges.
-- **Profile** — Academic and contact info at a glance.
+- **Dashboard:** Current semester and auto-calculated overall CGPA.
+- **Secure Grades:** Only published grades are visible. Raw marks are hidden; only Letter Grades and Earned Points are shown with color-coded badges.
+- **Profile:** Academic and contact info at a glance.
 
 ## Screenshots
 
@@ -39,31 +39,31 @@ A full-stack, role-based academic ERP system for student grading, teacher subjec
 
 ![Login](screenshots/login.png)
 
-### Admin — Dashboard & Register User
+### Admin - Dashboard & Register User
 
 | Register User (Student) | Register User (Teacher) |
 |:---:|:---:|
 | ![Register Student](screenshots/admin-register-student.png) | ![Register Teacher](screenshots/admin-register-teacher.png) |
 
-### Admin — Assign Subjects & Generate Marksheets
+### Admin - Assign Subjects & Generate Marksheets
 
 | Assign Subjects | Generate Marksheets |
 |:---:|:---:|
 | ![Assign Subjects](screenshots/admin-assign-subjects.png) | ![Generate Marksheets](screenshots/admin-generate-marksheets.png) |
 
-### Teacher — Dashboard & My Classes
+### Teacher - Dashboard & My Classes
 
 | Dashboard | My Classes |
 |:---:|:---:|
 | ![Teacher Dashboard](screenshots/teacher-dashboard.png) | ![My Classes](screenshots/teacher-my-classes.png) |
 
-### Teacher — Grade Entry
+### Teacher - Grade Entry
 
 | Theory Subject (Internal + Mid + End) | Lab Subject (Total /100) |
 |:---:|:---:|
 | ![Theory Grade Entry](screenshots/teacher-grade-theory.png) | ![Lab Grade Entry](screenshots/teacher-grade-lab.png) |
 
-### Student — Dashboard, Profile & Grades
+### Student - Dashboard, Profile & Grades
 
 | Dashboard | Profile |
 |:---:|:---:|
